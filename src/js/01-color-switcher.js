@@ -4,6 +4,8 @@ const refs = {
   body: document.body,
 };
 
+let timerID = null;
+
 refs.start.addEventListener('click', onClickBtnChangeColor);
 refs.stop.addEventListener('click', onClickBtnStopChangeColor);
 
