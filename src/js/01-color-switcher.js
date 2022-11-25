@@ -1,25 +1,25 @@
 const refs = {
-  btnStart: document.querySelector('button[data-start]'),
-  btnStop: document.querySelector('button[data-stop]'),
+  start: document.querySelector('[data-start]'),
+  stop: document.querySelector('[data-stop]'),
   body: document.body,
 };
-let intervalID = null;
 
-refs.btnStart.addEventListener('click', startChangeBodyColor);
-refs.btnStop.addEventListener('click', stopChangeBodyColor);
-refs.btnStop.disabled = true;
+let timerId = null;
 
-function startChangeBodyColor(e) {
-  refs.btnStart.disabled = true;
-  refs.btnStop.disabled = false;
-  intervalID = setInterval(setBodyColor, 1000);
+refs.start.addEventListener('click', onClickBtnChangeColor);
+refs.stop.addEventListener('click', onClickBtnStopChangeColor);
+
+function onClickBtnChangeColor() {
+  timerId = setInterval(setBodyColor, 1000);
+  refs.start.setAttribute('disabled', 'disabled');
+  refs.stop.removeAttribute('disabled');
 }
 
-function stopChangeBodyColor(e) {
-  refs.btnStart.disabled = false;
-  refs.btnStop.disabled = true;
-  clearInterval(intervalID);
-  intervalID = 0;
+function onClickBtnStopChangeColor() {
+  clearInterval(timerId);
+  timerId = 0;
+  refs.start.removeAttribute('disabled');
+  refs.stop.setAttribute('disabled', 'disabled');
 }
 
 function setBodyColor() {
