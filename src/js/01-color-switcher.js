@@ -4,7 +4,7 @@ const refs = {
   body: document.body,
 };
 
-let timerID = null;
+let timerId = null;
 
 refs.start.addEventListener('click', onClickBtnChangeColor);
 refs.stop.addEventListener('click', onClickBtnStopChangeColor);
@@ -19,6 +19,7 @@ function onClickBtnChangeColor() {
 
 function onClickBtnStopChangeColor() {
   clearInterval(timerId);
+  timerId = 0;
   refs.start.removeAttribute('disabled');
   refs.stop.setAttribute('disabled', 'disabled');
 }
