@@ -1,6 +1,6 @@
 import { pad } from './pad';
 
-export const convertMs(ms) => {
+export const convertMs = ms => {
   // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
@@ -17,4 +17,4 @@ export const convertMs(ms) => {
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
   return { days, hours, minutes, seconds };
-}
+};
