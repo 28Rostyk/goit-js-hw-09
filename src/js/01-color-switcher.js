@@ -8,6 +8,7 @@ let timerId = null;
 
 refs.start.addEventListener('click', onClickBtnChangeColor);
 refs.stop.addEventListener('click', onClickBtnStopChangeColor);
+refs.stop.setAttribute('disabled', 'disabled');
 
 function onClickBtnChangeColor() {
   timerId = setInterval(setBodyColor, 1000);
