@@ -4,6 +4,7 @@ import { convertMs } from './convertMs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 timerId = null;
+let userDate = null;
 
 const options = {
   enableTime: true,
@@ -34,7 +35,7 @@ window.addEventListener('click', startTimer);
 
 function startTimer(e) {
   if (e.target.nodeName !== 'BUTTON') return;
-  timerID = setInterval(countDownTimer, 1000);
+  timerId = setInterval(countDownTimer, 1000);
   refs.button.disabled = true;
   refs.input.disabled = true;
 }
@@ -45,11 +46,11 @@ function countDownTimer() {
   let { days, hours, minutes, seconds } = getTimeComponents(diff);
   if (userDate <= Date.now()) {
     Notify.info('Please, choose date in future');
-    clearInterval(timerID);
+    clearInterval(timerId);
     refs.input.disabled = false;
   }
   if (diff <= 1000) {
-    clearInterval(timerID);
+    clearInterval(timerId);
     seconds = getTimeComponents(0).seconds;
     minutes = getTimeComponents(0).minutes;
     hours = getTimeComponents(0).hours;
