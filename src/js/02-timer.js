@@ -3,7 +3,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import { convertMs } from './convertMs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-timerId = null;
+let timerId = null;
 let userDate = null;
 
 const options = {
