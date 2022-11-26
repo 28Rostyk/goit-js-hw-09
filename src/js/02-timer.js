@@ -3,7 +3,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import { convertMs } from './convertMs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-let timerId = null;
+let timerID = null;
 let userDate = null;
 
 const options = {
@@ -20,9 +20,9 @@ const options = {
   },
 };
 
-const flatpicr = flatpickr('#datetime-picker', options);
+const fkatpicr = flatpickr('#datetime-picker', options);
 
-const refs = {
+export const refs = {
   input: document.querySelector('#datetime-picker'),
   button: document.querySelector('[data-start]'),
   secondsUi: document.querySelector('[data-seconds]'),
@@ -35,7 +35,7 @@ window.addEventListener('click', startTimer);
 
 function startTimer(e) {
   if (e.target.nodeName !== 'BUTTON') return;
-  timerId = setInterval(countDownTimer, 1000);
+  timerID = setInterval(countDownTimer, 1000);
   refs.button.disabled = true;
   refs.input.disabled = true;
 }
@@ -46,11 +46,11 @@ function countDownTimer() {
   let { days, hours, minutes, seconds } = getTimeComponents(diff);
   if (userDate <= Date.now()) {
     Notify.info('Please, choose date in future');
-    clearInterval(timerId);
+    clearInterval(timerID);
     refs.input.disabled = false;
   }
   if (diff <= 1000) {
-    clearInterval(timerId);
+    clearInterval(timerID);
     seconds = getTimeComponents(0).seconds;
     minutes = getTimeComponents(0).minutes;
     hours = getTimeComponents(0).hours;
